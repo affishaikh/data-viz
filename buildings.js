@@ -56,10 +56,19 @@ const main = function() {
     .data(buildings)
     .enter()
     .append("text")
-    .text(b => b.name + " " + b.height)
+    .text(b => b.name)
     .attr("x", (_, i) => i * 100 + 75)
     .attr("y", 500)
     .attr("transform", (b, i) => `rotate(270 ${i * 100 + 75} ${500})`);
+
+  svg
+    .selectAll("#building-height")
+    .data(buildings)
+    .enter()
+    .append("text")
+    .text(b => b.height)
+    .attr("x", (_, i) => i * 100 + 50)
+    .attr("y", b => 490 - b.height / 2);
 };
 
 window.onload = main;
