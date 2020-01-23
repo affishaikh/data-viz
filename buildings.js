@@ -36,15 +36,20 @@ const main = function() {
     .attr("width", 800)
     .attr("height", 500);
 
+  const numberScale = d3
+    .scaleLinear()
+    .domain([0, 1000])
+    .range([500, 0]);
+
   svg
     .selectAll("rect")
     .data(buildings)
     .enter()
     .append("rect")
     .attr("width", 50)
-    .attr("height", building => building.height / 2)
-    .attr("x", (_, i) => i * 100 + 50)
-    .attr("y", building => 500 - building.height / 2)
+    .attr("height", b => numberScale(0) - numberScale(b.height))
+    .attr("x", (b, i) => i * 100 + 50)
+    .attr("y", b => numberScale(b.height))
     .attr("fill", b => {
       const arr = [b.height % 255, Math.random() * 255, Math.random() * 255];
       _.shuffle(arr);
