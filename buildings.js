@@ -33,7 +33,7 @@ const main = function() {
   const svg = d3
     .select("#container")
     .append("svg")
-    .attr("width", 1400)
+    .attr("width", 800)
     .attr("height", 500);
 
   svg
@@ -57,8 +57,9 @@ const main = function() {
     .enter()
     .append("text")
     .text(b => b.name + " " + b.height)
-    .attr("x", (_, i) => i * 100 + 50)
-    .attr("y", building => 500 - building.height / 2);
+    .attr("x", (_, i) => i * 100 + 75)
+    .attr("y", 500)
+    .attr("transform", (b, i) => `rotate(270 ${i * 100 + 75} ${500})`);
 };
 
 window.onload = main;
